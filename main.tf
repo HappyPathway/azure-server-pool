@@ -5,6 +5,10 @@ variable "server_pool_count" {}
 variable "server_pool_subnet_name" {}
 variable "server_pool_version" {}
 
+variable "service_name" {}
+
+variable "env" {}
+
 //--------------------------------------------------------------------
 // Modules
 module "network" {
@@ -15,7 +19,7 @@ module "network" {
 
 module "server_pool" {
   source  = "app.terraform.io/Darnold-Hashicorp/server-pool/azurerm"
-  version = "1.0.1"
+  version = "1.0.3"
 
   count          = "${var.server_pool_count}"
   network_name   = "${module.network.rg_name}"
