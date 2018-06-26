@@ -1,9 +1,9 @@
 //--------------------------------------------------------------------
 // Variables
 
-variable "server_pool_count" {}
-variable "server_pool_subnet_name" {}
-variable "server_pool_version" {}
+variable "server_pool_count" {
+  default = 3
+}
 
 variable "service_name" {}
 
@@ -24,7 +24,7 @@ module "server_pool" {
   count          = "${var.server_pool_count}"
   network_name   = "${module.network.rg_name}"
   resource_group = "${module.network.resource_group}"
-  subnet_name    = "${var.server_pool_subnet_name}"
+  subnet_name    = "${var.service_name}-${var.env}"
   version        = "${var.server_pool_version}"
   env            = "${var.env}"
   service_name   = "${var.service_name}"
