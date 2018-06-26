@@ -25,7 +25,6 @@ module "server_pool" {
   network_name   = "${module.network.rg_name}"
   resource_group = "${module.network.resource_group}"
   subnet_name    = "${var.service_name}-${var.env}"
-  version        = "${var.server_pool_version}"
   env            = "${var.env}"
   service_name   = "${var.service_name}"
   location       = "${module.network.location}"
