@@ -22,7 +22,6 @@ module "server_pool" {
   version = "1.0.5"
 
   count          = "${var.server_pool_count}"
-  network_name   = "${module.network.rg_name}"
   resource_group = "${var.env}"
   subnet         = "${module.network.subnet_name}"
   env            = "${var.env}"
