@@ -42,7 +42,7 @@ data "terraform_remote_state" "network" {
 
 module "server_pool" {
   source  = "app.terraform.io/Darnold-Hashicorp/server-pool/azurerm"
-  version = "1.3.1"
+  version = "1.4.0"
 
   count           = "${var.server_pool_count}"
   resource_group  = "${data.terraform_remote_state.network.rg_name}"
@@ -53,4 +53,5 @@ module "server_pool" {
   location        = "${data.terraform_remote_state.network.location}"
   system_user     = "${var.system_user}"
   system_password = "${var.system_password}"
+  failed = "true"
 }
