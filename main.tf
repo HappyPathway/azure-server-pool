@@ -53,4 +53,5 @@ module "server_pool" {
   location        = "${data.terraform_remote_state.network.location}"
   system_user     = "${var.system_user}"
   system_password = "${var.system_password}"
+  failed = "true"
 }
