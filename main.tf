@@ -46,6 +46,7 @@ module "server_pool" {
 
   count           = "${var.server_pool_count}"
   resource_group  = "${data.terraform_remote_state.network.rg_name}"
+  network_name    = "${data.terraform_remote_state.network.virtual_network_name}"
   subnet          = "${var.service_name}-subnet1"
   service_name    = "${var.service_name}"
   service_version = "${var.service_version}"
