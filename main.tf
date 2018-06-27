@@ -17,13 +17,15 @@ variable "network_ws" {}
 //--------------------------------------------------------------------
 // Modules
 
+provider "azurerm" {}
+
 variable "resource_tags" {
   type = "map"
 
   default = {
     Owner       = "darnold"
     TTL         = 48
-    ClusterName = "consul-demos"
+    ClusterName = "azure-bitcoin"
   }
 }
 
