@@ -13,7 +13,7 @@ variable "env" {}
 // Modules
 module "network" {
   source  = "app.terraform.io/Darnold-Hashicorp/network/azurerm"
-  version = "1.0.6"
+  version = "1.0.7"
   env     = "${var.env}"
 }
 
