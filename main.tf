@@ -19,7 +19,7 @@ module "network" {
 
 module "server_pool" {
   source  = "app.terraform.io/Darnold-Hashicorp/server-pool/azurerm"
-  version = "1.0.5"
+  version = "1.0.6"
 
   count          = "${var.server_pool_count}"
   resource_group = "${var.env}"
