@@ -12,3 +12,15 @@ variable "system_password" {}
 variable "organization" {}
 
 variable "network_ws" {}
+
+variable "vault_cluster" {
+  type        = "string"
+  description = "Address of Vault Cluster"
+}
+
+variable "vault_token" {
+  type        = "string"
+  description = "Vault Token"
+}
+
+variable "env" {}
