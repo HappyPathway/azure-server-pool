@@ -1,3 +1,3 @@
 output "hosts" {
-  value = "${module.server_pool.ipaddresses}"
+  value = "${module.server_pool.ipaddress}"
 }
