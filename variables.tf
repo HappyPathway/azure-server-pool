@@ -6,9 +6,6 @@ variable "service_name" {}
 
 variable "service_version" {}
 
-variable "system_user" {}
-variable "system_password" {}
-
 variable "organization" {}
 
 variable "network_ws" {}
