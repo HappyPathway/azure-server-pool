@@ -1,25 +1,8 @@
 //--------------------------------------------------------------------
 // Variables
 
-variable "server_pool_count" {
-  default = 3
-}
-
-variable "service_name" {}
-
-variable "service_version" {}
-
-variable "system_user" {}
-variable "system_password" {}
-
-variable "organization" {}
-
-variable "network_ws" {}
-
 //--------------------------------------------------------------------
 // Modules
-
-provider "azurerm" {}
 
 variable "resource_tags" {
   type = "map"
@@ -51,6 +34,6 @@ module "server_pool" {
   service_name    = "${var.service_name}"
   service_version = "${var.service_version}"
   location        = "${data.terraform_remote_state.network.location}"
-  system_user     = "${var.system_user}"
-  system_password = "${var.system_password}"
+  system_user     = "${random_string.username.result}"
+  system_password = "${random_string.password.result}"
 }
