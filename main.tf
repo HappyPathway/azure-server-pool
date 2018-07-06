@@ -25,9 +25,8 @@ data "terraform_remote_state" "network" {
 
 module "server_pool" {
   source  = "app.terraform.io/Darnold-Hashicorp/server-pool/azurerm"
-  version = "1.4.0"
+  version = "1.6.0"
 
-  count           = "${var.server_pool_count}"
   resource_group  = "${data.terraform_remote_state.network.rg_name}"
   network_name    = "${data.terraform_remote_state.network.virtual_network_name}"
   subnet          = "${data.terraform_remote_state.network.rg_name}-subnet1"
