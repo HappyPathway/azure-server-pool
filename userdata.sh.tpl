@@ -14,6 +14,7 @@ vault read -field=public_key ssh-${service_name}-${env}/config/ca > /etc/ssh/tru
 vault write -field=signed_key ssh-${service_name}-${env}/sign/host cert_type=host public_key=@/etc/ssh/ssh_host_rsa_key.pub > /etc/ssh/ssh_host_rsa_key-cert.pub
 chmod 0640 /etc/ssh/ssh_host_rsa_key-cert.pub
 
+mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bkup
 cat <<EOF > /etc/ssh/sshd_config
 Port 22
 Protocol 2
@@ -49,4 +50,4 @@ UsePAM yes
 TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem
 EOF
 
-service sshd restart
+service ssh restart
