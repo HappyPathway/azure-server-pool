@@ -53,5 +53,6 @@ data "template_file" "vault_policy" {
 }
 
 resource "vault_policy" "ssh_key_access" {
-  name = "ssh-${var.service_name}-${var.env}-access"
+  name   = "ssh-${var.service_name}-${var.env}-access"
+  policy = "${data.template_file.vault_policy.rendered}"
 }
