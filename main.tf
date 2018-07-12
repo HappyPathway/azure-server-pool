@@ -37,4 +37,5 @@ module "server_pool" {
   system_user     = "${random_string.username.result}"
   system_password = "${random_string.password.result}"
   user_data       = "${data.template_file.userdata.rendered}"
+  env             = "${var.env}"
 }

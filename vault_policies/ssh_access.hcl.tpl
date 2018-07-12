@@ -3,5 +3,5 @@ path "ssh-${service_name}-${env}/config/ca" {
 }
 
 path "ssh-${service_name}-${env}/sign/host" {
-    capabilities = ["write", "update"]
+    capabilities = ["create", "update"]
 }
