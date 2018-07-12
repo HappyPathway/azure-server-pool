@@ -29,3 +29,8 @@ variable "default_lease_ttl" {
 variable "max_lease_ttl" {
   default = 600
 }
+
+variable "app_role_secret_id" {
+  type        = "string"
+  description = "App Role Secret ID"
+}

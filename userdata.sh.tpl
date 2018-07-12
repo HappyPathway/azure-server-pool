@@ -8,7 +8,6 @@ unzip /tmp/vault.zip -d /usr/local/bin
 export VAULT_ADDR=${vault_addr}
 export VAULT_TOKEN=${vault_token}
 echo "export VAULT_ADDR=${vault_addr}" >> /etc/profile.d/vault.sh
-echo "export VAULT_TOKEN=${vault_token}" >> /etc/profile.d/vault.sh
 
 vault read -field=public_key ssh-${service_name}-${env}/config/ca > /etc/ssh/trusted-user-ca-keys.pem
 vault write -field=signed_key ssh-${service_name}-${env}/sign/host cert_type=host public_key=@/etc/ssh/ssh_host_rsa_key.pub > /etc/ssh/ssh_host_rsa_key-cert.pub
@@ -51,3 +50,7 @@ TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem
 EOF
 
 # service ssh restart
+
+role_id=$$(cat /etc/vault.d/app_id)
+vault_token=$$(vault write auth/approle/login role_id=$${role_id} secret_id=${app_role_secret_id})
+echo "export VAULT_TOKEN=${vault_token}" >> /etc/profile.d/vault.sh
