@@ -16,7 +16,7 @@ data "terraform_remote_state" "network" {
 data "template_file" "userdata" {
   template = "${file("userdata.sh.tpl")}"
 
-  args = {
+  vars {
     env          = "${var.env}"
     vault_token  = "${var.vault_token}"
     vault_addr   = "${var.vault_addr}"

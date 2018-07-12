@@ -46,7 +46,7 @@ resource "vault_generic_secret" "ssh_root" {
 data "template_file" "vault_policy" {
   template = "${file("${path.module}/vault_policies/ssh_access.hcl.tpl")}"
 
-  args = {
+  vars {
     env          = "${var.env}"
     service_name = "${var.service_name}"
   }
