@@ -4,16 +4,6 @@
 //--------------------------------------------------------------------
 // Modules
 
-variable "resource_tags" {
-  type = "map"
-
-  default = {
-    Owner       = "darnold"
-    TTL         = 48
-    ClusterName = "azure-bitcoin"
-  }
-}
-
 //--------------------------------------------------------------------
 data "terraform_remote_state" "network" {
   backend = "atlas"
@@ -23,9 +13,19 @@ data "terraform_remote_state" "network" {
   }
 }
 
+data "template_file" "userdata" {
+  template = "${file("userdata.sh.tpl")}"
+
+  args {
+    env         = "${var.env}"
+    vault_token = "${data.external.vault_token.results.token}"
+    vault_addr  = "${var.vault_addr}"
+  }
+}
+
 module "server_pool" {
-  source  = "app.terraform.io/Darnold-Hashicorp/server-pool/azurerm"
-  version = "1.6.0"
+  source  = "app.terraform.io/Darnold-AzureTF/server-pool/azurerm"
+  version = "2.0.0"
 
   resource_group  = "${data.terraform_remote_state.network.rg_name}"
   network_name    = "${data.terraform_remote_state.network.virtual_network_name}"
@@ -35,4 +35,5 @@ module "server_pool" {
   location        = "${data.terraform_remote_state.network.location}"
   system_user     = "${random_string.username.result}"
   system_password = "${random_string.password.result}"
+  user_data       = "${data.template_file.userdata.rendered}"
 }
