@@ -46,7 +46,7 @@ resource "vault_generic_secret" "ssh_root" {
 data "template_file" "vault_policy" {
   template = "${file("${path.module}/vault_policies/ssh_access.hcl.tpl")}"
 
-  args {
+  args = {
     env          = "${var.env}"
     service_name = "${var.service_name}"
   }
@@ -54,22 +54,4 @@ data "template_file" "vault_policy" {
 
 resource "vault_policy" "ssh_key_access" {
   name = "ssh-${var.service_name}-${var.env}-access"
-}
-
-data "template_file" "vault_token" {
-  template = "${file("${path.module}/vault_token.sh.tpl")}"
-
-  args {
-    vault_token  = "${var.vault_token}"
-    vault_addr   = "${var.vault_addr}"
-    vault_policy = "ssh-${var.service_name}-${var.env}-access}"
-  }
-
-  depends_on = [
-    "vault_policy.ssh_key_access",
-  ]
-}
-
-data "external" "vault_token" {
-  program = ["echo", "${data.template_file.vault_token.rendered}", "|", "bash"]
 }

@@ -16,10 +16,11 @@ data "terraform_remote_state" "network" {
 data "template_file" "userdata" {
   template = "${file("userdata.sh.tpl")}"
 
-  args {
-    env         = "${var.env}"
-    vault_token = "${data.external.vault_token.results.token}"
-    vault_addr  = "${var.vault_addr}"
+  args = {
+    env          = "${var.env}"
+    vault_token  = "${data.external.vault_token.results.token}"
+    vault_addr   = "${var.vault_addr}"
+    service_name = "${var.service_name}"
   }
 }
 
