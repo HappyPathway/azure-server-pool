@@ -7,6 +7,6 @@
     }
   ],
   "key_type": "ca",
-  "default_user": "ubuntu",
+  "default_user": "${user}",
   "ttl": "5m0s"
 }

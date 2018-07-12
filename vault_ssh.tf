@@ -25,9 +25,17 @@ resource "vault_generic_secret" "ssh_host_signing" {
   ]
 }
 
-resource "vault_generic_secret" "ssh_ubuntu" {
+data "template_file" "user" {
+  template = "${file("./ssh_roles/user.json")}"
+
+  vars {
+    user = "${random_string.username.result}"
+  }
+}
+
+resource "vault_generic_secret" "ssh_user" {
   path      = "ssh-${var.service_name}-${var.env}/roles/dev"
-  data_json = "${file("./ssh_roles/ubuntu.json")}"
+  data_json = "${data.template_file.user.rendered}"
 
   depends_on = [
     "vault_mount.ssh_mount",
