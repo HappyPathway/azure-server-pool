@@ -18,7 +18,7 @@ data "template_file" "userdata" {
 
   args = {
     env          = "${var.env}"
-    vault_token  = "${data.external.vault_token.results.token}"
+    vault_token  = "${var.token}"
     vault_addr   = "${var.vault_addr}"
     service_name = "${var.service_name}"
   }
