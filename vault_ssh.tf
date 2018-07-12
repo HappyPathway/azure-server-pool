@@ -26,7 +26,7 @@ resource "vault_generic_secret" "ssh_host_signing" {
 }
 
 data "template_file" "user" {
-  template = "${file("./ssh_roles/user.json")}"
+  template = "${file("./ssh_roles/user.json.tpl")}"
 
   vars {
     user = "${random_string.username.result}"
