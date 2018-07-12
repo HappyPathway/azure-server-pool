@@ -50,4 +50,4 @@ UsePAM yes
 TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem
 EOF
 
-service ssh restart
+# service ssh restart
