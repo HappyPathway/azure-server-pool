@@ -34,3 +34,8 @@ variable "app_role_secret_id" {
   type        = "string"
   description = "App Role Secret ID"
 }
+
+variable "db_server_name" {
+  type = "string"
+  description = "Database Server Name"
+}
