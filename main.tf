@@ -21,7 +21,6 @@ data "template_file" "userdata" {
     vault_token        = "${var.vault_token}"
     vault_addr         = "${var.vault_addr}"
     service_name       = "${var.service_name}"
-    app_role_secret_id = "${var.app_role_secret_id}"
   }
 }
 
