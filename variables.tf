@@ -29,3 +29,8 @@ variable "vault_token" {
   type = "string"
   description = "Vault Token"
 }
+
+variable "instance_type" {
+  type = "string"
+  description = "Azure Instance Type"
+}
