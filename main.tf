@@ -26,7 +26,7 @@ data "template_file" "userdata" {
 
 module "server_pool" {
   source  = "app.terraform.io/Darnold-AzureTF/server-pool/azurerm"
-  version = "2.1.0"
+  version = "2.1.1"
 
   resource_group  = "${data.terraform_remote_state.network.rg_name}"
   network_name    = "${data.terraform_remote_state.network.virtual_network_name}"
