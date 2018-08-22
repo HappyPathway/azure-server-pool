@@ -30,7 +30,7 @@ variable "vault_token" {
   description = "Vault Token"
 }
 
-variable "instance_type" {
+variable "instance_size" {
   type = "string"
-  description = "Azure Instance Type"
+  description = "Azure Instance Size"
 }
