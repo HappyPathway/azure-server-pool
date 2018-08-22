@@ -19,3 +19,13 @@ variable "default_lease_ttl" {
 variable "max_lease_ttl" {
   default = 600
 }
+
+variable "vault_addr" {
+  type = "string"
+  description = "Address of Vault Cluster. Including HTTP Scheme"
+}
+
+variable "vault_token" {
+  type = "string"
+  description = "Vault Token"
+}
