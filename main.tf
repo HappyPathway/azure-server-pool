@@ -26,7 +26,7 @@ data "template_file" "userdata" {
 
 module "server_pool" {
   source  = "git::https://github.com/HappyPathway/terraform-azurerm-server-pool.git"
-  version = "2.1.1"
+  version = "2.2.0"
 
   resource_group  = "${data.terraform_remote_state.network.rg_name}"
   network_name    = "${data.terraform_remote_state.network.virtual_network_name}"
